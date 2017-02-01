@@ -2,6 +2,7 @@
 package stockproject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 
@@ -115,15 +116,18 @@ public class InterfaceJPanel extends javax.swing.JFrame {
                         }
                     });
         
-   
+        ArrayList<Company> masterCompanyObjectList = new ArrayList<>();
         FileCreation Filer = new FileCreation();
-        Filer.getAllCompanyInfo();
-        
-        StockAnalysis totalAnalysis = new StockAnalysis();
         
         
-        
-        
+        masterCompanyObjectList = Filer.getAllCompanyInfo();
+        for (Company c : masterCompanyObjectList)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                System.out.println(c.StockInfo.get(x).get(1) + " " + c.StockInfo.get(x).get(2));
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

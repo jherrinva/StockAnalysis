@@ -21,5 +21,10 @@ public class Company
 
     }
     
+    public void printStockInfo()
+    {
+        
+    }
+    
     
 }

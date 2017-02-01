@@ -55,14 +55,15 @@ public class FileCreation
         int lineNumber = 0;
         while ((nextLine = priceReader.readNext()) != null)
         {
-            String tempEntryColZero = nextLine[0];
-            String tempEntryColOne = nextLine[1];
-            String tempEntryColSix = nextLine[6];
+            ArrayList<String> oneDayInfo = new ArrayList<>();
+            
+            if (lineNumber == 0){lineNumber++;continue;}
+            
+            oneDayInfo.add(nextLine[0]);
+            oneDayInfo.add(nextLine[1]);
+            oneDayInfo.add(nextLine[6]);
 
-            fcStockInfo.get(lineNumber).add(tempEntryColZero);
-            fcStockInfo.get(lineNumber).add(tempEntryColOne);
-            fcStockInfo.get(lineNumber).add(tempEntryColSix);
-
+            fcStockInfo.add(oneDayInfo);
             lineNumber++;
         }
 
@@ -74,7 +75,7 @@ public class FileCreation
 
 /**
  * Goes through list of company tickers, passes ticker information to download method to get file.  Does this
- * for all companies in list, then creates company objects and adds these objects to arrayList
+ * for all companies in list, then creates company objects and adds these objects to arrayList.  Accesses pullInfo method
  * @return  Returns arrayList of objects of type Company 
  * @throws FileNotFoundException
  * @throws IOException 
@@ -85,24 +86,30 @@ public class FileCreation
         String tickerFileLoc = "companylist.csv";
         CSVReader nameReader = new CSVReader(new FileReader(tickerFileLoc));
         ArrayList<Company> allCompanys = new ArrayList<>();
-        
+        ArrayList<ArrayList<String>> tempInfo = new ArrayList<ArrayList<String>>();
         
         String[] nextLine;
+        String tempFileLoc;
         int x = 0;
+        
         while ((nextLine = nameReader.readNext()) != null)
         {
             if (x == 0){x++;continue;}
             if (x > 6){break;}
             
             String tempTicker = nextLine[0];
+            tempFileLoc = "StockFiles\\" + tempTicker + ".csv";
+            
             downloadFile(tempTicker);
+            tempInfo = pullInfo(tempFileLoc);
+            Company tempCompany = new Company(tempTicker, tempInfo);
+            allCompanys.add(tempCompany);
+            
             x++;
         }
         
         
-        
-        String compTicker = "";
-        //downloadFile("MSFT");
+  
         return allCompanys;
     }
     
