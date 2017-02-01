@@ -18,7 +18,7 @@ public class FileCreation
     
     /**
      * Downloads CSV file based on tickerName
-     * @param theTicker - name of ticker to downlaod info for
+     * @param theTicker - name of ticker to download info for
      * @return   name and location where file saved
      * @throws MalformedURLException 
      */
