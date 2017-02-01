@@ -117,7 +117,7 @@ public class InterfaceJPanel extends javax.swing.JFrame {
         
    
         FileCreation Filer = new FileCreation();
-        Filer.getAllTickerFiles();
+        Filer.getAllCompanyInfo();
         
         StockAnalysis totalAnalysis = new StockAnalysis();
         
