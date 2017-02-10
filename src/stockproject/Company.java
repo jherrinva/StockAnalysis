@@ -2,28 +2,29 @@
 package stockproject;
 
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Company 
 {
     
     private final String companyTicker;
-    public ArrayList<ArrayList<String>> StockInfo = new ArrayList<ArrayList<String>>();
-    public ArrayList<ArrayList<String>> croppedInfo = new ArrayList<ArrayList<String>>();
-
+    HashMap<String, SingleDayQuote> fullHistory = new HashMap();
+   
     
     
     
-    public Company(String ticker, ArrayList<ArrayList<String>> infoToAdd)
+    
+    public Company(String ticker, HashMap<String, SingleDayQuote> history)
     {
         this.companyTicker = ticker;
-        this.StockInfo = infoToAdd;
+        this.fullHistory = history;
 
     }
     
     public void printStockInfo()
     {
-        
+        /////code below is templorary to test print method inside CompanyCreator///
+        System.out.println(fullHistory.get("2016-12-01").high);
     }
     
     
